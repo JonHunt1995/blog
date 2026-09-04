@@ -1,5 +1,5 @@
 ---
-import { experience, earlierRoles } from '../data/resume';
+import { experiences } from '../data/resume';
 
 const formatDate = (e: { start: string; end: string }) =>
   e.end === 'Present' ? `${e.start} – Present` : `${e.start} – ${e.end}`;
@@ -12,7 +12,7 @@ const formatDate = (e: { start: string; end: string }) =>
 
     <ul class="timeline">
       {
-        experience.map((e) => (
+        experiences.map((e) => (
           <li class:list={['timeline-item', { current: e.current }]}>
             <details class="timeline-details">
               <summary class="timeline-head">
@@ -41,14 +41,5 @@ const formatDate = (e: { start: string; end: string }) =>
         ))
       }
     </ul>
-
-    <div class="earlier">
-      <strong>Earlier:</strong>
-      {
-        earlierRoles.map((r) => (
-          <span>{r.role}, {r.company} ({r.start})</span>
-        ))
-      }
-    </div>
   </div>
 </section>

@@ -6,7 +6,6 @@ export interface SocialLink {
   icon?:
     | 'github'
     | 'linkedin'
-    | 'instagram'
     | 'email'
     | 'rss'
     | 'download'
@@ -25,28 +24,25 @@ export interface SocialLink {
  */
 export const site = {
   /** Your full name — used for <title> and meta tags */
-  title: 'Rowan Hale',
+  title: 'Jon Hunt',
   /** Short handle used after the dot in page titles ("About · rowanhale") */
-  shortTitle: 'rowanhale',
+  shortTitle: 'JonHunt',
   /** Default meta description for pages that don't set their own */
   description:
-    'Software engineer and occasional traveler — writing about code and sharing photos from the road.',
+    'Coding obsessed web developer and scientist.',
   /** Your production URL — no trailing slash. Used for canonical URLs, OG tags, RSS and sitemap */
-  url: 'https://example.com',
+  url: 'https://jonhunt.dev',
   author: {
-    name: 'Rowan Hale',
-    email: 'hello@example.com',
-    location: 'Portland, OR',
-    /** Optional: link to a PDF résumé served from /public */
-    resume: '/resume/Resume.pdf',
+    name: 'Jon Hunt',
+    email: 'hello@jonhunt.dev',
+    location: 'Chicago, IL',
   },
   /** Shown in the hero and footer. Delete a line to remove it from both places.
    *  `icon` is any name from src/components/Icon.astro */
   socials: {
-    github: { url: 'https://github.com', label: 'GitHub', icon: 'github' },
-    linkedin: { url: 'https://www.linkedin.com', label: 'LinkedIn', icon: 'linkedin' },
-    instagram: { url: 'https://www.instagram.com', label: 'Instagram', icon: 'instagram' },
-    email: { url: 'mailto:hello@example.com', label: 'Email', icon: 'email' },
+    github: { url: 'https://github.com/JonHunt1995', label: 'GitHub', icon: 'github' },
+    linkedin: { url: 'https://www.linkedin.com/in/jonathan-hunt-45267731b/', label: 'LinkedIn', icon: 'linkedin' },
+    email: { url: 'mailto:hello@jonhunt.dev', label: 'Email', icon: 'email' },
     rss: { url: '/rss.xml', label: 'RSS', icon: 'rss' },
   } satisfies Record<string, SocialLink>,
 };

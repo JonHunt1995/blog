@@ -1,6 +1,8 @@
 ---
 import Layout from '../../components/Layout.astro';
 import Icon from '../../components/Icon.astro';
+import Figure from '../../components/Figure.astro';
+import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { site, withBase } from '../../data/site';
@@ -31,6 +33,7 @@ const next = idx >= 0 && idx < allPosts.length - 1 ? allPosts[idx + 1] : undefin
 const readingTime = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 0) / 220));
 const dateFmt = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 const description = post.data.description ?? post.data.subtitle ?? `${post.data.title} — by ${post.data.author}`;
+const ogImage = typeof post.data.coverImage === 'object' ? post.data.coverImage.src : (post.data.coverImage ?? '/img/og.jpg');
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -48,7 +51,7 @@ const jsonLd = {
   title={post.data.title}
   description={description}
   type="article"
-  image={post.data.coverImage ?? '/img/og.jpg'}
+  image={ogImage}
   canonical={`${site.url}/blog/${post.id}/`}
   jsonLd={jsonLd}
 >
@@ -82,11 +85,23 @@ const jsonLd = {
       </header>
 
       {post.data.coverImage && (
-        <img src={withBase(post.data.coverImage)} alt={post.data.title} style="border-radius: var(--radius-lg); margin: 2rem 0; width: 100%; object-fit: cover; max-height: 420px;" />
+        typeof post.data.coverImage === 'object' ? (
+          <Image
+            src={post.data.coverImage}
+            alt={post.data.title}
+            style="border-radius: var(--radius-lg); margin: 2rem 0; width: 100%; object-fit: cover; max-height: 420px;"
+          />
+        ) : (
+          <img
+            src={withBase(post.data.coverImage)}
+            alt={post.data.title}
+            style="border-radius: var(--radius-lg); margin: 2rem 0; width: 100%; object-fit: cover; max-height: 420px;"
+          />
+        )
       )}
 
       <div class="prose" style="margin-top: 2rem;">
-        <Content />
+        <Content components={{ Figure }} />
       </div>
 
       <nav aria-label="Post navigation" class="pagination" style="justify-content: space-between; margin-top: 3rem;">

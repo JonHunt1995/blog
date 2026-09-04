@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { withBase } from '../data/site';
+
+type Project = CollectionEntry<'projects'>;
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="thumb">
+    {project.data.heroImage ? (
+      typeof project.data.heroImage === 'object' ? (
+        <Image src={project.data.heroImage} alt={project.data.title} loading="lazy" />
+      ) : (
+        <img src={withBase(project.data.heroImage)} alt={project.data.title} loading="lazy" />
+      )
+    ) : (
+      <span class="mono">&lt;/&gt;</span>
+    )}
+  </div>
+  <div class="body">
+    <h3 style="margin: 0.25rem 0 0.2rem;">
+      <a href={withBase(`/projects/${project.id}/`)} style="color: inherit; text-decoration: none;">
+        {project.data.title}
+      </a>
+    </h3>
+    {project.data.tagline && <p class="tagline">{project.data.tagline}</p>}
+    <p class="desc">{project.data.description}</p>
+
+    {project.data.tags.length > 0 && (
+      <div class="tag-list" style="margin-top: 0.75rem;">
+        {project.data.tags.map((t) => (
+          <span class="tag">#{t}</span>
+        ))}
+      </div>
+    )}
+
+    <div class="project-links">
+      <a href={withBase(`/projects/${project.id}/`)} style="display: inline-flex; align-items: center; gap: 0.35rem;">
+        Details <Icon name="arrow-right" size={14} />
+      </a>
+      {project.data.githubUrl && (
+        <a href={project.data.githubUrl} target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+          <Icon name="github" size={15} /> Code
+        </a>
+      )}
+      {project.data.demoUrl && (
+        <a href={project.data.demoUrl} target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+          <Icon name="external-link" size={14} /> Live
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+

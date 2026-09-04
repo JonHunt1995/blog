@@ -25,72 +25,104 @@ export interface SkillGroup {
 }
 
 /** Work history — newest first. Shown on /work */
-export const experience: Experience[] = [
+export const experiences: Experience[] = [
   {
-    role: 'Senior Software Engineer',
-    company: 'Example Corp',
-    companyUrl: 'https://example.com',
-    location: 'Remote',
-    start: 'Mar 2024',
-    end: 'Present',
+    role: "Medical Laboratory Scientist & Epic Beaker Super User",
+    company: "Northwestern Medicine",
+    location: "Chicago, IL",
+    start: "Jul 2018",
+    end: "Present",
     current: true,
-    summary: 'Replace this with a one-line summary of what you own or lead.',
+    summary:
+      "Supported hospital-wide LIS migration to Epic Beaker, providing workflow validation, end-user guidance, and frontline technical issue triage.",
     bullets: [
-      'Describe a thing you built, shipped, or led — outcomes over responsibilities.',
-      'Another bullet. Numbers help: latency cut in half, adoption up 3×, etc.',
-      'Mentoring, design reviews, on-call, whatever actually fills your week.',
+      "System Migration & Go-Live: Supported hospital-wide LIS migration from Cerner to Epic Beaker, providing at-the-elbow support and workflow validation to ensure continuity of patient care.",
+      "End-User Guidance & Training: Guide lab staff across all shifts on new Beaker features, optimized workflows, and best practices. Authored accessible reference guides to ease adoption and reduce basic IT support requests.",
+      "Frontline Support: Serve as the initial point of escalation for lab staff encountering Beaker issues. Triage incoming problems to distinguish between training gaps and application defects, streamlining the escalation process to technical teams.",
     ],
-    badges: ['TypeScript', 'Go', 'Kubernetes'],
+    badges: ["Epic Beaker", "Cerner", "LIS Migration", "Healthcare Tech", "Data Integrity"],
   },
   {
-    role: 'Software Engineer',
-    company: 'Startup Inc.',
-    companyUrl: 'https://example.com',
-    location: 'Portland, OR',
-    start: 'Jul 2021',
-    end: 'Feb 2024',
-    summary: 'One line about the product and your slice of it.',
+    role: "Open Source Contributor",
+    company: "Electrify Chicago",
+    location: "Chicago, IL (Remote)",
+    start: "Apr 2025",
+    end: "Present",
+    current: true,
+    summary:
+      "Engineered features and validated deployments for an open-source citywide emissions data platform in an Agile workflow.",
     bullets: [
-      'Owned X end to end — design, implementation, rollout.',
-      'Built Y used by Z customers.',
+      "Engineered features and resolved bugs by independently claiming and executing GitHub issues for a citywide emissions data platform, driving tickets from development to PR approval.",
+      "Validated deployment integrity by performing manual QA and analyzing automated Playwright test reports within GitHub Actions CI/CD pipelines to ensure parity across environments.",
+      "Collaborated with a distributed engineering team in an Agile workflow, participating in feature planning, ideation sessions, and peer code reviews.",
     ],
+    badges: ["Vue", "GraphQL", "Pandas", "Playwright", "GitHub Actions", "CI/CD"],
+  },
+  {
+    role: "Section Leader",
+    company: "Stanford University",
+    location: "Palo Alto, CA (Remote)",
+    start: "Apr 2025",
+    end: "Present",
+    current: true,
+    summary:
+      "Instruct and mentor a selective remote student cohort on software engineering fundamentals and critical debugging practices.",
+    bullets: [
+      "Teach core Python concepts and software engineering best practices to a highly selective remote student cohort.",
+      "Foster resilient problem-solving by instructing students on how to critically evaluate and debug AI-generated code.",
+    ],
+    badges: ["Python", "Mentorship", "Code Review", "Pedagogy"],
   },
 ];
 
-/** Smaller/older roles — rendered as compact rows under the main timeline */
-export const earlierRoles: { role: string; company: string; start: string; end: string }[] = [
-  { role: 'Engineering Intern', company: 'Some Company', start: '2020', end: '2021' },
-];
-
-export const education: Education[] = [
+export const educations: Education[] = [
   {
-    degree: 'B.S.',
-    field: 'Computer Science',
-    school: 'State University',
-    start: '2016',
-    end: '2020',
+    degree: "B.S.",
+    field: "Computer Science",
+    school: "Western Governors University",
+    start: "Mar 2023",
+    end: "Expected Jan 2027",
+  },
+  {
+    degree: "B.S.",
+    field: "Medical Lab Science",
+    school: "University of Minnesota",
+    start: "Sep 2013",
+    end: "Dec 2017",
   },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: 'Languages',
-    skills: ['TypeScript', 'Python', 'Go'],
+    title: "Languages",
+    skills: ["Python", "TypeScript", "Go", "Java", "C#", "SQL", "HTML/CSS"],
   },
   {
-    title: 'Platforms & Tools',
-    skills: ['React', 'PostgreSQL', 'Docker', 'AWS'],
+    title: "Frameworks & Libraries",
+    skills: ["React", "Vue", "Spring", ".NET", "Pandas"],
   },
   {
-    title: 'Interests',
-    skills: ['Distributed systems', 'Developer tooling', 'Photography'],
+    title: "Tools & Cloud",
+    skills: [
+      "Docker",
+      "Git",
+      "GitHub Actions",
+      "GCP (Cloud Run, Cloud Build, Firestore)",
+      "Cloudflare Workers",
+      "Playwright",
+      "Terraform",
+      "Ansible",
+      "GraphQL",
+    ],
   },
 ];
 
 /** Words typed out one character at a time in the hero */
 export const typingRoles = [
-  'software engineer',
-  'occasional photographer',
-  'weekend hiker',
-  'coffee enthusiast',
+  'Full Stack web developer',
+  'Avid cyclist',
+  'Scientist',
+  'Cat and dog lover',
+  'Pythonista',
+  'Gopher',
 ];

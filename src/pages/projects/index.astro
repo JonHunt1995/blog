@@ -1,0 +1,35 @@
+---
+import Layout from '../../components/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0),
+);
+---
+
+<Layout
+  title="Projects"
+  description="Selected software projects, open source tools, and experiments."
+>
+  <section class="section">
+    <div class="container">
+      <div style="margin-bottom: 2.5rem;">
+        <p class="eyebrow">Portfolio</p>
+        <h1>Projects</h1>
+        <p class="muted" style="max-width: 60ch; margin: 0;">
+          A collection of web apps, open-source tools, and experiments I've collaborated on or built.
+        </p>
+      </div>
+
+      {projects.length > 0 ? (
+        <div class="project-grid">
+          {projects.map((p) => <ProjectCard project={p} />)}
+        </div>
+      ) : (
+        <p class="muted" style="margin-top: 2rem;">Projects are on the way…</p>
+      )}
+    </div>
+  </section>
+</Layout>
+

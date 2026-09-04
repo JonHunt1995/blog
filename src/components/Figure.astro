@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import { withBase } from '../data/site';
+
+interface Props {
+  src?: any;
+  image?: any;
+  alt?: string;
+  caption?: string;
+}
+
+const { src: srcProp, image: imageProp, alt = '', caption } = Astro.props;
+const imageSource = imageProp ?? srcProp;
+---
+
+<figure class="post-figure">
+  {imageSource && (
+    typeof imageSource === 'object' ? (
+      <Image src={imageSource} alt={alt || caption || ''} />
+    ) : (
+      <img src={imageSource.startsWith('/') ? withBase(imageSource) : imageSource} alt={alt || caption || ''} />
+    )
+  )}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
