@@ -19,7 +19,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp -r dist/client/* dist/",
+    "build": "astro build && cp -r dist/client/* dist/ && printf '/keystatic/* /keystatic/index.html 200\\n/keystatic /keystatic/index.html 200\\n' > dist/_redirects && cp dist/_redirects dist/client/_redirects",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro"
