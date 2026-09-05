@@ -1,7 +1,7 @@
 ---
 import Keystatic from '../../components/KeystaticApp';
 
-export const prerender = true;
+export const prerender = import.meta.env.PROD;
 
 export function getStaticPaths() {
   return [
@@ -16,6 +16,19 @@ export function getStaticPaths() {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Keystatic Admin</title>
+    <script is:inline>
+      if (window.location.hostname === 'localhost') {
+        window.location.hostname = '127.0.0.1';
+      }
+    </script>
+    <style is:global>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <Keystatic client:only="react" />
