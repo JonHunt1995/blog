@@ -49,7 +49,7 @@ const jsonLd = {
         <a href={withBase('/projects')}><Icon name="arrow-left" size={14} /> Back to projects</a>
       </nav>
 
-      <header style="max-width: 70ch;">
+      <header>
         {project.data.date && (
           <div class="post-meta">
             <time datetime={project.data.date.toISOString()}>{dateFmt.format(project.data.date)}</time>

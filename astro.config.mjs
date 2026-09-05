@@ -6,9 +6,11 @@ import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import cloudflare from '@astrojs/cloudflare';
 
+const isDev = process.argv.includes('dev') || process.env.npm_lifecycle_event === 'dev';
+
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare(),
+  adapter: isDev ? undefined : cloudflare(),
   // Set this to your production URL (no trailing slash)
   site: 'https://jonhunt.dev',
   // Set this to your site's subpath if it is NOT hosted at the domain root

@@ -1134,7 +1134,10 @@ html[data-theme='dark'] .category-badge.tech { color: var(--accent); }
    Prose (blog post body)
    ========================================================================== */
 
-.prose { max-width: 70ch; }
+.prose {
+  width: 100%;
+  max-width: 100%;
+}
 
 .prose h2, .prose h3 {
   margin-top: 2rem;

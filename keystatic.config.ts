@@ -2,12 +2,22 @@ import { config, fields, collection } from '@keystatic/core';
 import { block } from '@keystatic/core/content-components';
 
 export default config({
-  storage: {
-    kind: process.env.NODE_ENV === 'production' ? 'cloud' : 'local',
-  },
-  cloud: {
-    project: process.env.PUBLIC_KEYSTATIC_PROJECT ?? 'just-me/blog',
-  },
+  storage: import.meta.env.PROD
+    ? (import.meta.env.PUBLIC_KEYSTATIC_PROJECT
+        ? { kind: 'cloud' }
+        : {
+            kind: 'github',
+            repo: {
+              owner: 'JonHunt1995',
+              name: 'blog',
+            },
+          })
+    : {
+        kind: 'local',
+      },
+  cloud: import.meta.env.PUBLIC_KEYSTATIC_PROJECT
+    ? { project: import.meta.env.PUBLIC_KEYSTATIC_PROJECT }
+    : undefined,
   collections: {
     blog: collection({
       label: 'Blog Posts',
