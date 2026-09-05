@@ -12,29 +12,34 @@ const lastName = nameParts.join(' ');
 <section class="hero">
   <div class="stars" aria-hidden="true"></div>
   <div class="container hero-inner">
-    <div>
-      <p class="hero-greeting">Hello, I'm</p>
-      <h1>{firstName} {lastName && <span class="accent">{lastName}</span>}</h1>
-      <p class="hero-typed">
-        <span class="typed" id="typed-roles" data-roles={rolesJson}></span><span class="typed-cursor" aria-hidden="true">▍</span>
-      </p>
+    <p class="hero-greeting">Hello, I'm</p>
+    <h1>{firstName} {lastName && <span class="accent">{lastName}</span>}</h1>
+    <p class="hero-typed">
+      <span class="typed" id="typed-roles" data-roles={rolesJson}></span><span class="typed-cursor" aria-hidden="true">▍</span>
+    </p>
 
-      <p class="hero-bio">
-        Programming enthusiast and fullstack web developer chronicling my coding journey and learning experience. Tutorials, showcases, 
-        post-mortems, deep-dives, and anything that I feel would be a good learning experience are documented here.
-      </p>
+    <p class="hero-bio">
+      Programming enthusiast and fullstack web developer chronicling my coding journey and learning experience. Tutorials, showcases, 
+      post-mortems, deep-dives, and anything that I feel would be a good learning experience are documented here.
+    </p>
 
-      <div class="social-row">
-        {Object.values(site.socials).map((s) => (
-          <a class="social-link" href={withBase(s.url)} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">
-            {s.icon && <Icon name={s.icon} />}
-            {s.label}
-          </a>
-        ))}
-      </div>
+    <div class="hero-cta">
+      <a href={withBase('/projects')} class="btn btn-primary">
+        View Projects <Icon name="arrow-right" size={16} />
+      </a>
+      <a href={withBase('/blog')} class="btn btn-ghost">
+        Read Blog <Icon name="arrow-right" size={16} />
+      </a>
     </div>
 
-    <img class="hero-avatar" src={withBase('/img/avatar.svg')} alt={`Portrait of ${site.author.name}`} width="220" height="220" />
+    <div class="social-row">
+      {Object.values(site.socials).map((s) => (
+        <a class="social-link" href={withBase(s.url)} target={s.url.startsWith('http') ? '_blank' : undefined} rel="noopener">
+          {s.icon && <Icon name={s.icon} />}
+          {s.label}
+        </a>
+      ))}
+    </div>
   </div>
 </section>
 

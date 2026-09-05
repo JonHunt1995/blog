@@ -3,7 +3,10 @@ import { block } from '@keystatic/core/content-components';
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: process.env.NODE_ENV === 'production' ? 'cloud' : 'local',
+  },
+  cloud: {
+    project: process.env.PUBLIC_KEYSTATIC_PROJECT ?? 'just-me/blog',
   },
   collections: {
     blog: collection({

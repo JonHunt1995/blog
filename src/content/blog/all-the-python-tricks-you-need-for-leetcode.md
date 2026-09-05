@@ -25,7 +25,7 @@ As I mentioned before, I actually didn't really know Python when initially grind
 
 ## Collections and Heapq
 
-Python has many built-in modules ready made for DSA heavy problems, \the most important are collections and, heapq. The collections model is the one I tend to reach for the most, and deque (double ended queue usually for BFS) and Counter (a dictionary that rapidly enumerates strings to letters or lists to items).
+Python has many built-in modules ready made for DSA heavy problems, the most important are collections and, heapq. The collections model is the one I tend to reach for the most, and deque (double ended queue usually for BFS) and Counter (a dictionary that rapidly enumerates strings to letters or lists to items).
 
 Now a Counter isn't exactly hard to implement which is why most languages don't have it built in, but being able to rapidly one-line and act on a Counter can render many leetcode problems into 2-5 lines vs 10-20. Another underrated aspect is since a Counter is a defaultdict(int), you don't need to check if an item is in a Counter because it'll automatically be 0 which saves from checking if an item is in a dict. Defaultdicts allow you to do the same thing, which is why they are a nice feature to reach for. [Counters also have additional helpful methods](https://docs.python.org/3/library/collections.html#collections.Counter) on top of dicts, but I don't really remember them so rarely reach for them in leetcode. They do look handy enough where it may be actually beneficial remembering though. A good example of when to reach for Counters are to solve straightforward hashmap problems very rapidly. Compare this Go approach to Valid Anagrams vs Python:
 

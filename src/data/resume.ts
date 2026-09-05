@@ -119,10 +119,11 @@ export const skillGroups: SkillGroup[] = [
 
 /** Words typed out one character at a time in the hero */
 export const typingRoles = [
-  'Full Stack web developer',
+  'Full-Stack web developer',
   'Avid cyclist',
   'Scientist',
   'Cat and dog lover',
   'Pythonista',
   'Gopher',
+  'Leetcode addict'
 ];

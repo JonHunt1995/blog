@@ -222,9 +222,19 @@ th {
 }
 
 .brand {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-strong);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  transition: color 0.15s ease;
+}
+
+.brand:hover {
+  color: var(--accent-strong);
 }
 
 .brand span {
@@ -270,19 +280,7 @@ th {
 .hero-inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.hero-avatar {
-  width: clamp(160px, 26vw, 220px);
-  height: clamp(160px, 26vw, 220px);
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--surface);
-  box-shadow: var(--shadow-lg);
+  max-width: 46rem;
 }
 
 .hero-greeting {
@@ -293,7 +291,9 @@ th {
 }
 
 .hero h1 {
+  font-family: var(--font-mono);
   font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.03em;
   margin-bottom: 0.25rem;
 }
 
@@ -305,6 +305,7 @@ th {
 }
 
 .hero-typed {
+  font-family: var(--font-mono);
   font-size: clamp(1.1rem, 2.4vw, 1.35rem);
   color: var(--muted);
   min-height: 1.6em;
@@ -1286,16 +1287,6 @@ body.has-deck .site-footer {
    ========================================================================== */
 
 @media (max-width: 720px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-avatar {
-    order: -1;
-    width: 150px;
-    height: 150px;
-  }
-
   .nav-links {
     gap: 0.1rem;
   }

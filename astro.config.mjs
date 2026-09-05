@@ -4,11 +4,11 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
-
-const isBuild = process.env.npm_lifecycle_event === 'build';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: cloudflare(),
   // Set this to your production URL (no trailing slash)
   site: 'https://jonhunt.dev',
   // Set this to your site's subpath if it is NOT hosted at the domain root
@@ -18,6 +18,6 @@ export default defineConfig({
     sitemap(),
     mdx(),
     react(),
-    ...(isBuild && !process.env.KEYSTATIC_PROD ? [] : [keystatic()]),
+    keystatic(),
   ],
 });
