@@ -1,0 +1,23 @@
+---
+import Keystatic from '../../components/KeystaticApp';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    { params: { params: undefined } },
+  ];
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keystatic Admin</title>
+  </head>
+  <body>
+    <Keystatic client:only="react" />
+  </body>
+</html>
