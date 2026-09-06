@@ -1,6 +1,7 @@
 ---
 title: My Stab At Weekly Leetcode Contest 518
 subtitle: My thoughts and approach attempting the contest
+description: 'The planning, coding, and post-mortem of LC Weekly # 518'
 date: 2026-09-06
 category: tech
 author: Jon Hunt
@@ -8,7 +9,7 @@ tags:
   - leetcode
   - python
   - deep-dive
-draft: true
+draft: false
 mathjax: false
 ---
 I want to preface that this wasn't an official contest or even virtual. I am just going through the official contest problems the day after it happened. In contest mode, you are intentionally limited in not being able to see topics or hints and have limited test cases vs normal mode. I didn't look at the topics or hints but did use the standard leetcode mode for debugging, so definitely not the "true contest". My goal when trying to solve the contest problems is solving the first 2 because I think that's a good benchmark at my current skill level. Problem 3 is usually iffy for me because it typically uses a more advanced algorithm that I am not familiar with, and can be very punishing for suboptimal approaches. Problem 4 I pretty much just skim the description and skip.
@@ -102,7 +103,7 @@ class Solution:
         return result
 ```
 
-## Q3:
+## Q3: &nbsp;[**Count Robot Groups**](https://leetcode.com/problems/count-robot-groups/)
 
 This one I unfortunately wasn't able to solve, but I actually ended up being very close. This one screamed greedy to me, where the limiting factor would be the rightmost robots and keeping track of the slowest speed seen from the reverse. My idea is basically thinking of it like a traffic jam, where groups will congregate behind the slowest robots. An interesting twist with this is that if the robots are within a given distance of each other, they automatically join together to be a group. If any robots behind a group were too slow and too far away, means that there will be at least one more group. If I could scan and either increment from zero or decrement from the total number of robots, I should get the number of groups that form. My attempt to this was this:
 
@@ -123,3 +124,9 @@ class Solution:
 
         return groups
 ```
+
+The correct approach is indeed greedy but my code had some pitfalls. First, instead of having the speed be the rightmost robot in a group when merges occur, it takes the minimum of the 2. I also don't have the limiter for speed be the minimum seen in the non merging path, which is another logical error.
+
+## Summary
+
+I skipped the final question, leading to a solid 2/4 with a decent attempt on Q3. Overall I think it was a respectable showing and I was able to incorporate itertools in here and so far I'm liking it. I definitely think these questions would be pretty fair in an interview, mostly being straightforward array and string questions. I have noticed that I have a weakness against greedy problems, so I think I'll deep dive into that pattern in a later time.\
