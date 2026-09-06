@@ -6,6 +6,10 @@ export const prerender = import.meta.env.PROD;
 export function getStaticPaths() {
   return [
     { params: { params: undefined } },
+    { params: { params: 'cloud/oauth/callback' } },
+    { params: { params: 'branch/main' } },
+    { params: { params: 'collection/blog' } },
+    { params: { params: 'collection/projects' } },
   ];
 }
 ---
