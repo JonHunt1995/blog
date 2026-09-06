@@ -101,3 +101,25 @@ class Solution:
 
         return result
 ```
+
+## Q3:
+
+This one I unfortunately wasn't able to solve, but I actually ended up being very close. This one screamed greedy to me, where the limiting factor would be the rightmost robots and keeping track of the slowest speed seen from the reverse. My idea is basically thinking of it like a traffic jam, where groups will congregate behind the slowest robots. An interesting twist with this is that if the robots are within a given distance of each other, they automatically join together to be a group. If any robots behind a group were too slow and too far away, means that there will be at least one more group. If I could scan and either increment from zero or decrement from the total number of robots, I should get the number of groups that form. My attempt to this was this:
+
+```py
+class Solution:
+    def countGroups(self, positions: list[int], speeds: list[int], distance: int) -> int:
+        bumping_speed = speeds[-1]
+        bumping_position = positions[-1]
+        groups = len(positions) + 1
+
+        for position, speed in zip(positions[-1::-1], speeds[-1::-1]):
+            #print(position, speed, groups, bumping_speed, bumping_position)
+            if bumping_position - position <= distance or speed > bumping_speed:
+                #print("fire 1", position, speed)
+                groups -= 1
+                bumping_speed = min(speed, bumping_speed)
+            bumping_position = position
+
+        return groups
+```
