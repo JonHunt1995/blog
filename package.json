@@ -18,7 +18,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "build": "astro build && cp -r dist/client/* dist/ && cp dist/keystatic/index.html dist/keystatic-spa.html && cp dist/keystatic/index.html dist/client/keystatic-spa.html && cp public/_redirects dist/_redirects && cp public/_redirects dist/client/_redirects",
+    "dev": "astro dev",
+    "build": "astro build && cp -r dist/client/* dist/",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro"
