@@ -8,7 +8,7 @@ author: Jon Hunt
 tags:
   - leetcode
   - python
-  - deep-dive
+  - deep-dives
 draft: false
 mathjax: false
 ---
