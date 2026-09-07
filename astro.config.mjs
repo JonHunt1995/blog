@@ -10,7 +10,9 @@ const isDev = process.argv.includes('dev') || process.env.npm_lifecycle_event ==
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: isDev ? undefined : cloudflare(),
+  adapter: isDev ? undefined : cloudflare({
+    imageService: 'compile',
+  }),
   // Set this to your production URL (no trailing slash)
   site: 'https://jonhunt.dev',
   // Set this to your site's subpath if it is NOT hosted at the domain root
