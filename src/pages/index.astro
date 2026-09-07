@@ -1,8 +1,24 @@
 ---
 import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostCard from '../components/PostCard.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
 import { site, withBase } from '../data/site';
 import { experiences, skillGroups } from '../data/resume';
+
+// 1. Featured projects (or fallback to most recent)
+const allProjects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0),
+);
+const featuredProjects = allProjects.filter((p) => p.data.featured);
+const displayProjects = (featuredProjects.length > 0 ? featuredProjects : allProjects).slice(0, 2);
+
+// 2. Recent blog posts (latest 3)
+const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -27,4 +43,48 @@ const personJsonLd = {
 
 <Layout title={undefined} jsonLd={personJsonLd}>
   <Hero />
+
+  {displayProjects.length > 0 && (
+    <section class="section" style="padding-top: 1rem;">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <p class="eyebrow" style="margin-bottom: 0.25rem;">Portfolio</p>
+            <h2 style="margin: 0; font-size: 1.75rem;">Featured Projects</h2>
+          </div>
+          <a href={withBase('/projects')} class="muted" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.95rem; font-weight: 500;">
+            All projects <Icon name="arrow-right" size={15} />
+          </a>
+        </div>
+
+        <div class="project-grid">
+          {displayProjects.map((p) => (
+            <ProjectCard project={p} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {recentPosts.length > 0 && (
+    <section class="section" style="padding-top: 2rem; padding-bottom: 4rem;">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <p class="eyebrow" style="margin-bottom: 0.25rem;">Blog</p>
+            <h2 style="margin: 0; font-size: 1.75rem;">Latest Writings</h2>
+          </div>
+          <a href={withBase('/blog')} class="muted" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.95rem; font-weight: 500;">
+            All posts <Icon name="arrow-right" size={15} />
+          </a>
+        </div>
+
+        <div class="post-list">
+          {recentPosts.map((p) => (
+            <PostCard post={p} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 </Layout>

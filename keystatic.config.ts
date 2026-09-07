@@ -93,6 +93,7 @@ export default config({
           label: 'Key Highlights / Features',
           itemLabel: (props) => props.value,
         }),
+        featured: fields.checkbox({ label: 'Featured on Homepage', defaultValue: false }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
         content: fields.markdoc({
           label: 'Project Case Study / Details',

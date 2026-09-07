@@ -27,13 +27,14 @@ const projects = defineCollection({
     z.object({
       title: z.string(),
       tagline: z.string().optional(),
-      description: z.string(),
+      description: z.string().default(''),
       date: z.coerce.date().optional(),
       tags: z.array(z.string()).default([]),
       heroImage: image().or(z.string()).optional(),
       demoUrl: z.string().optional(),
       githubUrl: z.string().optional(),
       highlights: z.array(z.string()).default([]),
+      featured: z.boolean().default(false),
       draft: z.boolean().default(false),
     }),
 });

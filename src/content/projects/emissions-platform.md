@@ -10,6 +10,7 @@ highlights:
   - Built interactive data visualization components in Vue & GraphQL
   - Automated end-to-end testing with Playwright in GitHub Actions CI/CD
   - Normalized and analyzed municipal emissions datasets using Python & Pandas
+featured: true
 ---
 
 ## Overview

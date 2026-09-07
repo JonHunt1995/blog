@@ -1,6 +1,7 @@
 ---
 title: Backend For Box Inventory Platform
 tagline: Easy cataloging and searching for your boxes
+description: Go backend using the service and repository pattern with sqlc and PostgreSQL for an open-source box inventory platform.
 date: 2026-09-07
 tags:
   - Go
