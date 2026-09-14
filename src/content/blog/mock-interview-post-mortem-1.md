@@ -120,4 +120,11 @@ class Solution:
         )
 ```
 
-However, this is computationally expensive at O(n), with the&#x20;
+However, this is computationally expensive at O(n), with the function taking longer to execute based off of the size of the input. However, with some basic math and looking at the constraints of the problem, it's clear that for this simplified version that since there will only be dealing with numbers that are at most 1 comma (max is $10^5$). Therefore it can be simplified to this:
+
+```py
+class Solution:
+    def countCommas(self, n: int) -> int:
+        return max(0, n - 999)
+```
+
