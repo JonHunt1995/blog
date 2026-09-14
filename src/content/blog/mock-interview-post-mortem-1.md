@@ -127,3 +127,7 @@ class Solution:
     def countCommas(self, n: int) -> int:
         return max(0, n - 999)
 ```
+
+## Q3: [**Count Commas in Range II**](https://leetcode.com/problems/count-commas-in-range-ii/)
+
+Still, it feels like using the logarithm to get the number of commas is still correct. I also feel like the shape of the problem looks recursive to me, but I admit I tend to reach for recursion in many cases when it's superfluous. However, since using recursion is essentially O($\log\_\{1000}(n)$), I am not very concerned about the amount of levels of recursion, since it should be 5 max at 1 quintillion. \
