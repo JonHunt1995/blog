@@ -12,7 +12,7 @@ tags:
   - deep-dives
   - mock-interview
   - ladder-climb
-draft: true
+draft: false
 mathjax: true
 ---
 I have been doing regular mock interviews with a group of friends for nearly a year now, and I figured I would write some post-mortems and reflections. The theme for this mock interview I would say is to use the tools you're comfortable with and save the experimentation for practice. Now for the past couple blog posts I have been trying out the [itertools](https://docs.python.org/3/library/itertools.html) module because it seems like a useful time-saver for a bunch of problems and seems pretty nice for Python programming in general. I also felt that something like math.log() would be a useful tool to have (which I think it does, just not as much as math.pow()), but since I didn't know the tools well they wouldn't be worth the trouble in an interview. However I did some digging later to learn more about these tools and how to apply them. I was asked 3 interview questions and here is roughly my thoughts when attempting them.
@@ -109,7 +109,7 @@ class Solution:
 ## Q2: [**Count Commas in Range**](https://leetcode.com/problems/count-commas-in-range/)
 
 \
-I was initially asked the tougher version of this problem, but ended up being stumped so opted for the easier one first. I initially solved this by initially thinking, that the amount of commas is basically the same as the `$1000^x$ = num` where the floor operator of x is equal to the number of commas. Since a logarithm is the inverse of an exponent, I can use this code to get the number of commas:
+I was initially asked the tougher version of this problem, but ended up being stumped so opted for the easier one first. I initially solved this by initially thinking, that the amount of commas is basically the same as the `$1000^x$ = num` where`\lfloor x \rfloor` is equal to the number of commas. Since a logarithm is the inverse of an exponent, I can use this code to get the number of commas:
 
 ```py
 class Solution:
