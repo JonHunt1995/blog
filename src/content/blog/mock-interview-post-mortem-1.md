@@ -109,7 +109,7 @@ class Solution:
 ## Q2: [**Count Commas in Range**](https://leetcode.com/problems/count-commas-in-range/)
 
 \
-I was initially asked the tougher version of this problem, but ended up being stumped so opted for the easier one first. I initially solved this by initially thinking, that the amount of commas is basically the same as the `$1000^x$ = num` where`\lfloor x \rfloor` is equal to the number of commas. Since a logarithm is the inverse of an exponent, I can use this code to get the number of commas:
+I was initially asked the tougher version of this problem, but ended up being stumped so opted for the easier one first. I initially solved this by initially thinking, that the amount of commas is basically the same as the $1000^x$ = num where\lfloor x \rfloor is equal to the number of commas. Since a logarithm is the inverse of an exponent, I can use this code to get the number of commas:
 
 ```py
 class Solution:
