@@ -14,6 +14,7 @@ interface Props {
   canonical?: string;
   noindex?: boolean;
   jsonLd?: object;
+  mathjax?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   canonical = site.url + Astro.url.pathname,
   noindex = false,
   jsonLd,
+  mathjax = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} · ${site.shortTitle}` : site.title;
@@ -68,6 +70,30 @@ const imageUrl = withBase(image);
     </script>
 
     {jsonLd && <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />}
+
+    {mathjax && (
+      <>
+        <script is:inline>
+          window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              displayMath: [['$$', '$$'], ['\\[', '\\]']],
+              processEscapes: true,
+              processEnvironments: true,
+            },
+            options: {
+              skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            },
+          };
+        </script>
+        <script
+          id="MathJax-script"
+          is:inline
+          async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        ></script>
+      </>
+    )}
   </head>
   <body>
     <Header />

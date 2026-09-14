@@ -1176,6 +1176,30 @@ html[data-theme='dark'] .category-badge.tech { color: var(--accent); }
   color: var(--muted);
 }
 
+.prose sub,
+.prose sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.prose sup {
+  top: -0.5em;
+}
+
+.prose sub {
+  bottom: -0.25em;
+}
+
+/* Responsive MathJax formula scrolling on small viewports */
+.prose mjx-container[jax="CHTML"][display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.5rem 0;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */

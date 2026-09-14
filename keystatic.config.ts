@@ -1,5 +1,21 @@
 import { config, fields, collection } from '@keystatic/core';
-import { block } from '@keystatic/core/content-components';
+import { block, mark } from '@keystatic/core/content-components';
+import { subscriptIcon } from '@keystar/ui/icon/icons/subscriptIcon';
+import { superscriptIcon } from '@keystar/ui/icon/icons/superscriptIcon';
+
+const subMark = mark({
+  label: 'Subscript',
+  icon: subscriptIcon,
+  tag: 'sub',
+  schema: {},
+});
+
+const supMark = mark({
+  label: 'Superscript',
+  icon: superscriptIcon,
+  tag: 'sup',
+  schema: {},
+});
 
 export default config({
   storage: {
@@ -41,7 +57,7 @@ export default config({
         }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
         mathjax: fields.checkbox({ label: 'MathJax', defaultValue: false }),
-        content: fields.markdoc({
+        content: fields.mdx({
           label: 'Content',
           extension: 'md',
           options: {
@@ -51,6 +67,8 @@ export default config({
             },
           },
           components: {
+            sub: subMark,
+            sup: supMark,
             Figure: block({
               label: 'Image with Caption',
               schema: {
@@ -95,7 +113,7 @@ export default config({
         }),
         featured: fields.checkbox({ label: 'Featured on Homepage', defaultValue: false }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
-        content: fields.markdoc({
+        content: fields.mdx({
           label: 'Project Case Study / Details',
           extension: 'md',
           options: {
@@ -105,6 +123,8 @@ export default config({
             },
           },
           components: {
+            sub: subMark,
+            sup: supMark,
             Figure: block({
               label: 'Image with Caption',
               schema: {
