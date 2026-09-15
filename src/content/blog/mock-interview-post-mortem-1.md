@@ -130,7 +130,7 @@ class Solution:
 
 ## Q3: [**Count Commas in Range II**](https://leetcode.com/problems/count-commas-in-range-ii/)
 
-Still, it feels like using the logarithm to get the number of commas is still correct. I also feel like the shape of the problem looks recursive to me, but I admit I tend to reach for recursion in many cases when it's superfluous. However, since using recursion is essentially O($\log\_\{1000}(n)$), I am not very concerned about the amount of levels of recursion, since it should be 5 max at 1 quintillion. The space efficiency should be around the same as well. I couldn't find a proper pattern during the mock and went back to the drawing board the next day. An insight I had was to calculate an "offset", which would be a way to isolate each magnitude of a number. For example, if I had 45,678,901 I could first find the $\lfloor\log\_\{1000}(n)\rfloor$ which I will be referring to as log\_k. This would initially be log\_k of 2, and then I can take the offset which would be 999,999. Subtracting the number from the offset will get the range of all numbers with 2 commas (1,000,000 - 45,678,901). If we keep recursively pass in the offset to this function and add the result, we should eventually count all numbers with a comma like so:
+Still, it feels like using the logarithm to get the number of commas is still correct. I also feel like the shape of the problem looks recursive to me, but I admit I tend to reach for recursion in many cases when it's superfluous. However, since using recursion is essentially O($\log\_\{1000}(n)$), I am not very concerned about the amount of levels of recursion, since it should be 5 max at 1 quintillion. The space efficiency should be around the same as well. I couldn't find a proper pattern during the mock and went back to the drawing board the next day. An insight I had was to calculate an "offset", which would be a way to isolate each magnitude of a number. For example, if I had 45,678,901 I could first find the $\lfloor\log\_\{1000}(n)\rfloor$ which I will be referring to as log\_k. This would initially be log\_k of 2, and then I can take the offset which would be 999,999. Subtracting the offset from the number will get the range of all numbers with 2 commas (1,000,000 - 45,678,901). If we keep recursively pass in the offset to this function and add the result, we should eventually count all numbers with a comma like so:
 
 ```py
 class Solution:
@@ -146,12 +146,12 @@ class Solution:
 
 Once we hit below 1000, we know there are no more commas to count so we hit the base case. Assuming that we have a large number like 123,456,789,012,345, this is what we would count for each magnitude of 1000s:
 
-| Magnitude                      | Comma Count                 |
-| ------------------------------ | --------------------------- |
-| trillions (four comma numbers) | 489,827,156,049,384 commas  |
-| billions (three comma numbers) | 2,997,000,000,000 commas    |
-| millions (two comma numbers)   | 1998000000 commas           |
-| thousands (one comma numbers)  | 999000 commas               |
+| Magnitude                      | Comma Count                |
+| ------------------------------ | -------------------------- |
+| trillions (four comma numbers) | 489,827,156,049,384 commas |
+| billions (three comma numbers) | 2,997,000,000,000 commas   |
+| millions (two comma numbers)   | 1998000000 commas          |
+| thousands (one comma numbers)  | 999000 commas              |
 
 This table is roughly similar to the call stack before it hits the base case and propagates back in the final return statement. This felt like a proper solution, but due to an unbelievably subtle error, I was hitting a wrong solution at around 1 quintillion. After running some debugging print statements I found a very interesting scenario. At 999,999,999,999,995 and below the code is accurate. However, anything above that and we get some interesting bugs due to the slight imprecision of floating point numbers.
 
