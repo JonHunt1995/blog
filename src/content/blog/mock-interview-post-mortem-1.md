@@ -130,4 +130,54 @@ class Solution:
 
 ## Q3: [**Count Commas in Range II**](https://leetcode.com/problems/count-commas-in-range-ii/)
 
-Still, it feels like using the logarithm to get the number of commas is still correct. I also feel like the shape of the problem looks recursive to me, but I admit I tend to reach for recursion in many cases when it's superfluous. However, since using recursion is essentially O($\log\_\{1000}(n)$), I am not very concerned about the amount of levels of recursion, since it should be 5 max at 1 quintillion. The space efficiency should be around the same as well. I couldn't find a proper pattern during the mock and went back to the drawing board the next day. An insight I had was to calculate an "offset", which would be a way to isolate each magnitude of a number. For example, if I had 45,678,901 I could first find the $\lfloor\log\_\{1000}(n)\rfloor$ which I will be referring to as log\_k. This would be&#x20;
+Still, it feels like using the logarithm to get the number of commas is still correct. I also feel like the shape of the problem looks recursive to me, but I admit I tend to reach for recursion in many cases when it's superfluous. However, since using recursion is essentially O($\log\_\{1000}(n)$), I am not very concerned about the amount of levels of recursion, since it should be 5 max at 1 quintillion. The space efficiency should be around the same as well. I couldn't find a proper pattern during the mock and went back to the drawing board the next day. An insight I had was to calculate an "offset", which would be a way to isolate each magnitude of a number. For example, if I had 45,678,901 I could first find the $\lfloor\log\_\{1000}(n)\rfloor$ which I will be referring to as log\_k. This would initially be log\_k of 2, and then I can take the offset which would be 999,999. Subtracting the number from the offset will get the range of all numbers with 2 commas (1,000,000 - 45,678,901). If we keep recursively pass in the offset to this function and add the result, we should eventually count all numbers with a comma like so:
+
+```py
+class Solution:
+   def countCommas(self, num: int) -> int:
+        if num < 1000:
+           return 0
+
+        log_k = int(math.log(num, 1000))
+        offset = 1000 ** log_k - 1
+
+        return log_k * (num - offset) + self.countCommas(offset)
+```
+
+Once we hit below 1000, we know there are no more commas to count so we hit the base case. Assuming that we have a large number like 123,456,789,012,345, this is what we would count for each magnitude of 1000s:
+
+| Magnitude                      | Comma Count                 |
+| ------------------------------ | --------------------------- |
+| trillions (four comma numbers) | 489,827,156,049,384 commas  |
+| billions (three comma numbers) | 2,997,000,000,000 commas    |
+| millions (two comma numbers)   | 1998000000 commas           |
+| thousands (one comma numbers)  | 999000 commas               |
+
+This table is roughly similar to the call stack before it hits the base case and propagates back in the final return statement. This felt like a proper solution, but due to an unbelievably subtle error, I was hitting a wrong solution at around 1 quintillion. After running some debugging print statements I found a very interesting scenario. At 999,999,999,999,995 and below the code is accurate. However, anything above that and we get some interesting bugs due to the slight imprecision of floating point numbers.
+
+```py
+import math
+
+print(int(math.log(999_999_999_999_995, 1000))) # Output: 4
+print(int(math.log(999_999_999_999_996, 1000))) # Output: 5
+```
+
+At such large numbers, the imprecision is just enough where we can't reliably use math.log() anymore. I asked an LLM if there's any workaround that can use a similar strategy, and it suggested finding log\_k by taking the length of the integer cast as a string and then subtract by one and then use floor division by 3 which leads to the successful solution.
+
+```py
+class Solution:
+   def countCommas(self, num: int) -> int:
+        if num < 1000:
+            return 0
+
+        log_k = (len(str(num)) - 1) // 3
+        offset = 1000 ** log_k - 1
+        
+        return log_k * (num - offset) + self.countCommas(offset)
+```
+
+This figuring out the log\_k by just measuring the length of a number harkens back to an old-school technique in my field of biochemistry to find an area under a curve. Sure, you can use fancy calculus and integration to find an area under a curve, but without computers the much easier solution was to weigh the graph paper, then cut out the paper and weigh again to find out the area under a curve (nowadays we use computers that take care of that for spectrophotometry but still fun to see ingenuity with resource constraints).
+
+## Summary
+
+I know before I mentioned about [all of the fun tricks that you can leverage with Python](https://jonhunt.dev/blog/all-the-python-tricks-you-need-for-leetcode/) for leetcode, but really I think you only need the fundamentals. Loops, conditionals, branching, and basic understanding of data structures are all you really "need". However, I do think that fully understanding the tools available at your disposal are important, but if you don't fully know them then stick with what you know. Also, be careful with floating-point numbers because they aren't completely precise. I'm going to try and keep workshopping and experimenting on various algorithmic and Python techniques, hopefully soon going through more advanced patterns and algorithms.
